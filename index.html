@@ -81,6 +81,11 @@
 
   .check{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;font-size:clamp(14.5px,1.25vw,18.5px)}
   .check .box{width:17px;height:17px;border:1.5px solid var(--accent);border-radius:4px;flex:0 0 auto;margin-top:3px}
+  .wk-cost{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:clamp(12.5px,1.05vw,15px);letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+  .wk-cost b{color:var(--accent);font-size:1.18em;letter-spacing:0}
+  .wk-total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:clamp(16px,2vw,26px);padding:clamp(14px,1.6vw,20px) clamp(16px,1.8vw,24px);background:linear-gradient(160deg,rgba(77,208,167,.12),rgba(77,208,167,.03));border:1px solid rgba(77,208,167,.35);border-radius:14px}
+  .wk-total span:first-child{font-family:var(--mono);font-size:clamp(12px,1vw,14px);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .wk-total .num{font-size:clamp(22px,2.4vw,34px);font-weight:900;letter-spacing:-.02em;color:var(--accent)}
 
   /* chrome */
   .hud{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);border-top:1px solid var(--line);background:#080c11;gap:16px}
@@ -416,23 +421,28 @@
         <div class="check"><div class="box"></div><span>Water drums (55-gal) + gravity filter — 28 gal stored</span></div>
         <div class="check"><div class="box"></div><span>CO detector + one propane tank &amp; heater</span></div>
         <div class="check"><div class="box"></div><span>$500 cash in small bills</span></div>
+        <div class="wk-cost">≈ <b>$800</b> this week</div>
       </div>
       <div class="card">
         <h3>Week 2</h3>
         <div class="check"><div class="box"></div><span>2 weeks of staples + mylar/O₂ absorbers</span></div>
         <div class="check"><div class="box"></div><span>Headlamps, batteries, NOAA radio</span></div>
+        <div class="wk-cost">≈ <b>$320</b> this week</div>
       </div>
       <div class="card">
         <h3>Week 3</h3>
         <div class="check"><div class="box"></div><span>Second propane tank + camp stove</span></div>
         <div class="check"><div class="box"></div><span>First aid + prescription stockpile</span></div>
+        <div class="wk-cost">≈ <b>$255</b> this week</div>
       </div>
       <div class="card">
         <h3>Ongoing</h3>
         <div class="check"><div class="box"></div><span>Rotate pantry monthly (eat oldest)</span></div>
         <div class="check"><div class="box"></div><span>Solar + battery bank when budget allows</span></div>
+        <div class="wk-cost">≈ <b>$25–40</b> per month</div>
       </div>
     </div>
+    <div class="wk-total"><span>First 3 weeks, all-in</span><span class="num">≈ $1,375</span></div>
     <div class="quote" style="margin-top:auto">The goal isn't a bunker. It's a boring Tuesday you barely notice.</div>
   </section>
 
