@@ -116,8 +116,8 @@
   .cover{position:relative;justify-content:center;overflow:hidden}
   .cover::before{content:"";position:absolute;top:-14%;right:-6%;width:min(50vw,700px);height:min(50vw,700px);border-radius:50%;background:radial-gradient(circle,rgba(77,208,167,.18),rgba(77,208,167,0) 68%);pointer-events:none;z-index:0}
   .cover::after{content:"";position:absolute;bottom:-18%;left:-10%;width:min(42vw,580px);height:min(42vw,580px);border-radius:50%;background:radial-gradient(circle,rgba(242,184,75,.12),rgba(242,184,75,0) 70%);pointer-events:none;z-index:0}
-  .cover > *{position:relative;z-index:1;margin-left:0;margin-right:0;width:100%;max-width:1360px}
-  .cover h1{font-size:clamp(46px,6.6vw,104px);line-height:.96;letter-spacing:-.035em;margin:0 0 22px}
+  .cover > *{position:relative;z-index:1;width:100%;max-width:1360px;margin-left:auto;margin-right:auto}
+  .cover h1{font-size:clamp(46px,6.6vw,104px);line-height:.96;letter-spacing:-.035em;margin:0 auto 22px}
   .cover .sub{font-size:clamp(18px,1.55vw,25px);max-width:74ch;margin-bottom:clamp(26px,3.2vw,46px)}
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.4vw,22px);align-items:stretch}
   .stat{display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:clamp(22px,2.1vw,34px);background:linear-gradient(165deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;position:relative;overflow:hidden}
