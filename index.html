@@ -83,14 +83,18 @@
   .check .box{width:17px;height:17px;border:1.5px solid var(--accent);border-radius:4px;flex:0 0 auto;margin-top:3px}
 
   /* chrome */
-  .hud{display:flex;justify-content:space-between;align-items:center;padding:12px 22px;font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);border-top:1px solid var(--line);background:#080c11}
-  .hud .nav{display:flex;gap:10px}
-  button{font-family:var(--mono);background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 15px;cursor:pointer;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
-  button:hover{border-color:var(--accent);color:var(--accent)}
-  button:disabled{opacity:.35;cursor:default}
-  .pips{display:flex;gap:5px}
-  .pip{width:7px;height:7px;border-radius:50%;background:var(--line);cursor:pointer}
-  .pip.on{background:var(--accent)}
+  .hud{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);border-top:1px solid var(--line);background:#080c11;gap:16px}
+  .hud .nav{display:flex;gap:12px}
+  button{font-family:var(--mono);background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px 24px;cursor:pointer;font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:all .15s}
+  button:hover:not(:disabled){border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+  button:active:not(:disabled){transform:translateY(0)}
+  button:disabled{opacity:.3;cursor:default}
+  #next{border-color:var(--accent);color:var(--accent);background:rgba(77,208,167,.1)}
+  #next:hover:not(:disabled){background:rgba(77,208,167,.2);color:var(--accent);box-shadow:0 4px 18px rgba(77,208,167,.25)}
+  .pips{display:flex;gap:6px}
+  .pip{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:all .15s}
+  .pip:hover{background:var(--dim)}
+  .pip.on{background:var(--accent);box-shadow:0 0 8px rgba(77,208,167,.6)}
   .progress{position:fixed;left:0;top:0;height:3px;background:var(--accent);width:0;transition:width .25s;z-index:50}
 
   .slide-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;border-bottom:1px solid var(--line);padding-bottom:16px}
@@ -103,6 +107,9 @@
   .card li a.buy{border-bottom-style:solid;border-bottom-color:var(--line)}
   .card li a.buy:hover{border-bottom-color:var(--accent)}
   .buynote{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--dim);margin-top:10px;text-transform:uppercase}
+  .kbd-hint{margin-top:22px;font-size:clamp(15px,1.3vw,19px);color:var(--dim);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .kbd-hint b{color:var(--ink)}
+  .kbd-hint .k{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 8px;border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;background:var(--panel);font-family:var(--mono);font-size:16px;color:var(--ink);box-shadow:0 2px 0 rgba(0,0,0,.3)}
   .buynote a.buy{text-transform:none;letter-spacing:0}
 </style>
 </head>
@@ -120,6 +127,7 @@
       <div class="card tint"><div class="tag">Horizon</div><div class="big small">14–28</div><div class="label">days covered</div></div>
       <div class="card tint"><div class="tag">Setup cost</div><div class="big small">$2,472</div><div class="label">Phase 1 $1,777 · core $775</div></div>
     </div>
+    <div class="kbd-hint"><span class="k">←</span><span class="k">→</span> Use the <b>left</b> and <b>right arrow keys</b> to scroll through the deck — or swipe on mobile</div>
     <div class="foot">Arrow keys / space to advance · press P to print</div>
   </section>
 
