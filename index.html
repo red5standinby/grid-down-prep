@@ -111,6 +111,23 @@
   .kbd-hint b{color:var(--ink)}
   .kbd-hint .k{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 8px;border:1px solid var(--line);border-bottom-width:3px;border-radius:8px;background:var(--panel);font-family:var(--mono);font-size:16px;color:var(--ink);box-shadow:0 2px 0 rgba(0,0,0,.3)}
   .buynote a.buy{text-transform:none;letter-spacing:0}
+
+  /* hero cover */
+  .cover{position:relative;justify-content:center}
+  .cover::before{content:"";position:absolute;top:-10%;right:-6%;width:min(46vw,620px);height:min(46vw,620px);border-radius:50%;background:radial-gradient(circle,rgba(77,208,167,.16),rgba(77,208,167,0) 68%);pointer-events:none;z-index:0}
+  .cover::after{content:"";position:absolute;bottom:-16%;left:-8%;width:min(38vw,520px);height:min(38vw,520px);border-radius:50%;background:radial-gradient(circle,rgba(242,184,75,.10),rgba(242,184,75,0) 70%);pointer-events:none;z-index:0}
+  .cover > *{position:relative;z-index:1}
+  .cover h1{font-size:clamp(44px,7.2vw,108px);line-height:.98;letter-spacing:-.035em;margin-bottom:20px;max-width:16ch}
+  .cover .sub{font-size:clamp(17px,1.7vw,26px);max-width:60ch}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.5vw,20px);margin-top:clamp(24px,3vw,40px);align-items:stretch}
+  .stat{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:clamp(18px,2vw,30px);background:linear-gradient(165deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden}
+  .stat::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),transparent)}
+  .stat .tag{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2)}
+  .stat .big{font-size:clamp(38px,4.6vw,68px);font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .stat .big.money{color:var(--accent)}
+  .stat .label{font-family:var(--mono);font-size:clamp(11px,1vw,13px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  @media (max-width:860px){.cover h1{max-width:none}.stats{grid-template-columns:1fr}
+    .stat{flex-direction:row;align-items:baseline;justify-content:flex-start;gap:14px}.stat::before{height:100%;width:3px;background:linear-gradient(180deg,var(--accent),transparent)}}
 </style>
 </head>
 <body>
@@ -118,14 +135,14 @@
 <div class="deck" id="deck">
 
   <!-- 1 -->
-  <section class="slide active">
+  <section class="slide active cover">
     <div class="kicker">⚡ Volt Labs · Preparedness Brief</div>
-    <h1>Grid-Down Survival<br/>Supply Plan</h1>
+    <h1>Grid-Down<br/>Survival Plan</h1>
     <p class="sub">A 2–4 week household plan sized for rising energy costs and supply-chain wobble. What actually works, what it costs, and what to skip.</p>
-    <div class="grid g3" style="margin-top:auto">
-      <div class="card tint"><div class="tag">Basis</div><div class="big small">4</div><div class="label">2 adults · 2 kids</div></div>
-      <div class="card tint"><div class="tag">Horizon</div><div class="big small">14–28</div><div class="label">days covered</div></div>
-      <div class="card tint"><div class="tag">Setup cost</div><div class="big small">$2,472</div><div class="label">Phase 1 $1,777 · core $775</div></div>
+    <div class="stats">
+      <div class="stat"><div class="tag">Basis</div><div class="big">4</div><div class="label">2 adults · 2 kids</div></div>
+      <div class="stat"><div class="tag">Horizon</div><div class="big">14–28</div><div class="label">days covered</div></div>
+      <div class="stat"><div class="tag">Setup cost</div><div class="big money">$2,472</div><div class="label">Phase 1 $1,777 · core $775</div></div>
     </div>
     <div class="kbd-hint"><span class="k">←</span><span class="k">→</span> Use the <b>left</b> and <b>right arrow keys</b> to scroll through the deck — or swipe on mobile</div>
     <div class="foot">Arrow keys / space to advance · press P to print</div>
