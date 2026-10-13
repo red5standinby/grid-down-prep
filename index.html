@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Grid-Down Preparedness — 2-4 Week Plan</title>
+<style>
+  :root{
+    --bg:#0b0f14;
+    --panel:#121a23;
+    --panel2:#16202b;
+    --ink:#e8eef5;
+    --dim:#93a4b5;
+    --accent:#4dd0a7;
+    --accent2:#f2b84b;
+    --warn:#e2604a;
+    --line:#233040;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+  body{display:flex;flex-direction:column;overflow:hidden}
+
+  .deck{flex:1;position:relative;overflow:hidden}
+  .slide{
+    position:absolute;inset:0;
+    padding:clamp(24px,4vw,64px) clamp(24px,5vw,90px);
+    display:none;flex-direction:column;
+    animation:fade .28s ease;
+    overflow-y:auto;
+  }
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .kicker{font-family:var(--mono);text-transform:uppercase;letter-spacing:.18em;font-size:clamp(10px,1.1vw,13px);color:var(--accent);margin-bottom:10px}
+  h1{font-size:clamp(30px,5.4vw,66px);line-height:1.03;margin:0 0 14px;font-weight:800;letter-spacing:-.02em}
+  h2{font-size:clamp(24px,3.6vw,44px);line-height:1.08;margin:0 0 18px;font-weight:800;letter-spacing:-.015em}
+  h3{font-size:clamp(16px,1.7vw,21px);margin:0 0 8px;font-weight:700}
+  p{line-height:1.55;color:var(--ink);font-size:clamp(14px,1.45vw,18px);margin:0 0 12px}
+  .sub{color:var(--dim);font-size:clamp(14px,1.6vw,20px);line-height:1.5;max-width:62ch}
+  .mono{font-family:var(--mono)}
+
+  .grid{display:grid;gap:clamp(12px,1.6vw,20px);margin-top:clamp(12px,2vw,26px)}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media (max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(14px,1.7vw,22px)}
+  .card.tint{background:linear-gradient(160deg,var(--panel2),var(--panel))}
+  .card .tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);margin-bottom:6px}
+  .card ul{margin:8px 0 0;padding-left:18px}
+  .card li{line-height:1.5;font-size:clamp(13px,1.3vw,16px);margin-bottom:5px}
+  .price{font-family:var(--mono);color:var(--accent);font-weight:700}
+
+  .rank{border-left:3px solid var(--accent);padding-left:16px;margin-bottom:14px}
+  .rank.no{border-left-color:var(--warn)}
+  .rank.warn{border-left-color:var(--accent2)}
+  .rank h3{margin-bottom:4px}
+  .rank p{margin:0;color:var(--dim);font-size:clamp(13px,1.35vw,17px)}
+
+  .big{font-size:clamp(38px,7vw,96px);font-weight:900;letter-spacing:-.03em;line-height:1}
+  .big.small{font-size:clamp(26px,4vw,54px)}
+  .label{font-family:var(--mono);color:var(--dim);text-transform:uppercase;letter-spacing:.15em;font-size:clamp(10px,1.05vw,12px)}
+
+  table{width:100%;border-collapse:collapse;margin-top:10px;font-size:clamp(12px,1.25vw,16px)}
+  th{font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--dim);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr.hl td{background:rgba(77,208,167,.07)}
+  td.num{font-family:var(--mono);text-align:right;white-space:nowrap}
+  td.c{color:var(--accent)}
+  tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:none}
+
+  .bar{height:10px;border-radius:6px;background:var(--line);overflow:hidden;margin-top:6px}
+  .bar > i{display:block;height:100%;background:var(--accent)}
+
+  .callout{background:linear-gradient(160deg,rgba(242,184,75,.12),rgba(242,184,75,.04));border:1px solid rgba(242,184,75,.35);border-radius:14px;padding:clamp(14px,1.8vw,22px);margin-top:16px}
+  .callout.red{background:linear-gradient(160deg,rgba(226,96,74,.12),rgba(226,96,74,.04));border-color:rgba(226,96,74,.35)}
+
+  .check{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;font-size:clamp(13px,1.3vw,16px)}
+  .check .box{width:16px;height:16px;border:1.5px solid var(--accent);border-radius:4px;flex:0 0 auto;margin-top:3px}
+
+  /* chrome */
+  .hud{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);border-top:1px solid var(--line);background:#080c11}
+  .hud .nav{display:flex;gap:8px}
+  button{font-family:var(--mono);background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  button:hover{border-color:var(--accent);color:var(--accent)}
+  button:disabled{opacity:.35;cursor:default}
+  .pips{display:flex;gap:5px}
+  .pip{width:7px;height:7px;border-radius:50%;background:var(--line);cursor:pointer}
+  .pip.on{background:var(--accent)}
+  .progress{position:fixed;left:0;top:0;height:3px;background:var(--accent);width:0;transition:width .25s;z-index:50}
+
+  .slide-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;border-bottom:1px solid var(--line);padding-bottom:14px}
+  .slide-head .n{font-family:var(--mono);color:var(--dim);font-size:12px}
+  .quote{font-size:clamp(18px,2.4vw,30px);line-height:1.35;font-weight:600;max-width:40ch}
+  .foot{margin-top:auto;padding-top:16px;color:var(--dim);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  a.buy{color:var(--ink);text-decoration:none;border-bottom:1px dotted var(--accent);transition:color .15s,border-color .15s}
+  a.buy:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  a.buy::after{content:"↗";font-size:.72em;margin-left:3px;color:var(--accent);opacity:.7}
+  .card li a.buy{border-bottom-style:solid;border-bottom-color:var(--line)}
+  .card li a.buy:hover{border-bottom-color:var(--accent)}
+  .buynote{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--dim);margin-top:10px;text-transform:uppercase}
+  .buynote a.buy{text-transform:none;letter-spacing:0}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide active">
+    <div class="kicker">⚡ Volt Labs · Preparedness Brief</div>
+    <h1>Grid-Down Survival<br/>Supply Plan</h1>
+    <p class="sub">A 2–4 week household plan sized for rising energy costs and supply-chain wobble. What actually works, what it costs, and what to skip.</p>
+    <div class="grid g3" style="margin-top:auto">
+      <div class="card tint"><div class="tag">Basis</div><div class="big small">4</div><div class="label">2 adults · 2 kids</div></div>
+      <div class="card tint"><div class="tag">Horizon</div><div class="big small">14–28</div><div class="label">days covered</div></div>
+      <div class="card tint"><div class="tag">Setup cost</div><div class="big small">$2,472</div><div class="label">Phase 1 $1,777 · core $775</div></div>
+    </div>
+    <div class="foot">Arrow keys / space to advance · press P to print</div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <div class="kicker">Frame it correctly</div>
+    <h2>A 2-week outage is a Tuesday emergency. Two months is a different problem.</h2>
+    <div class="grid g2">
+      <div class="card"><div class="tag">What preparedness solves</div>
+        <ul>
+          <li>Storms, grid failure, ice, boil-water notices</li>
+          <li>Store shortages / price spikes on staples</li>
+          <li>A few weeks of no resupply</li>
+          <li>Peace of mind + less panic buying</li>
+        </ul>
+      </div>
+      <div class="card"><div class="tag">What it does NOT solve</div>
+        <ul>
+          <li>Multi-month economic collapse</li>
+          <li>Long-term relocation questions</li>
+          <li>Anything a solo household can't do alone</li>
+          <li>Community/travel/logistics — those are separate</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <h3>The sane target</h3>
+      <p style="margin:0">2–4 weeks of <b>water, food, heat, light, cash</b> — sized to your household, <b>rotated</b> so it stays usable. Around a thousand dollars for a family, not several thousand.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">Priority Stack</h2><span class="n">Ranked by ROI</span></div>
+    <div style="margin-top:20px">
+      <div class="rank"><h3>1 · Water — highest ROI, full stop</h3><p>Nobody dies of starvation in a 2-week outage. People get sick from bad water. <b>1 gal/person/day.</b> For 4 people that's 28 gal/week.</p></div>
+      <div class="rank"><h3>2 · Heat &amp; light without the grid</h3><p>Propane + indoor-safe heater + CO detector. This keeps you *alive and functional* in winter.</p></div>
+      <div class="rank"><h3>3 · Food you already eat</h3><p>Shelved versions of your normal diet. Rotate: eat oldest, replace. No weird food you won't touch.</p></div>
+      <div class="rank warn"><h3>4 · Comms, power, cash, meds</h3><p>Solar + battery, weather radio, small bills, first aid, prescription stockpile.</p></div>
+      <div class="rank no"><h3>Skip · Gold, ammo, tactical gear</h3><p>Least liquid in a real disruption, easiest to overpay, and none of it feeds you.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">1 · Water</h2><span class="n">~$353</span></div>
+    <table>
+      <thead><tr><th>Item</th><th>Qty</th><th>Est. cost</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><a class="buy" href="https://www.amazon.com/s?k=55+gallon+food+grade+water+storage+drum" target="_blank" rel="noopener">55-gal food-grade water drums (garage, rotated)</a></td><td>2</td><td class="num c">$248</td></tr>
+        <tr class="hl"><td><a class="buy" href="https://www.amazon.com/s?k=gravity+water+filter+berkey+sawyer+lifestraw" target="_blank" rel="noopener">Gravity filter (Sawyer / Lifestraw family / Berkey)</a></td><td>1</td><td class="num c">$38</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=aquatabs+water+purification+tablets" target="_blank" rel="noopener">Unscented bleach (8.25%) + Aquatabs/PUR backup</a></td><td>assorted</td><td class="num c">$22</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=drinking+water+test+kit+well+bacteria" target="_blank" rel="noopener">Water testing kit (bacteria + basic chemistry)</a></td><td>1</td><td class="num c">$25</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=drinking+water+hose+rv+potable" target="_blank" rel="noopener">Potable hose / pump / fittings + labels</a></td><td>set</td><td class="num c">$20</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td>28 gal stored · 4 people, 1 week</td><td class="num c">$353</td></tr></tfoot>
+    </table>
+    <div class="grid g2">
+      <div class="card"><div class="tag">Storage</div>
+        <ul>
+          <li>2 × 55-gal food-grade drums (garage) — rotated</li>
+          <li>Or 20 × 1-gal jugs, stacked &amp; dated</li>
+          <li>Water stored = 28 gal for 4 people, 1 week</li>
+          <li>Keep out of sunlight; rotate every 6–12 mo</li>
+        </ul>
+      </div>
+      <div class="card"><div class="tag">Treatment</div>
+        <ul>
+          <li>Gravity filter: Sawyer / Lifestraw family / Berkey</li>
+          <li>Unscented bleach (8.25%) — 2 drops/L, 30 min</li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=drinking+water+test+kit+well+bacteria" target="_blank" rel="noopener">Water testing kit</a> — test drums before use, every rotation</li>
+          <li>PUR / Aquatabs as backup</li>
+          <li>Filter handles thousands of gallons</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><p style="margin:0"><b>Rule of thumb:</b> 1 gal/person/day drinking + 0.5 gal for hygiene. Double it if you have pets or it's summer.</p></div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">2 · Heat, Light &amp; Cooking</h2><span class="n">~$340</span></div>
+    <div class="grid g3">
+      <div class="card"><div class="tag">Heat</div>
+        <ul>
+          <li><a class="buy" href="https://www.amazon.com/s?k=20+lb+propane+tank" target="_blank" rel="noopener">3 × 20-lb propane tanks</a></li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=mr+heater+indoor+safe+propane+heater" target="_blank" rel="noopener">Mr. Heater indoor-safe unit</a></li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=carbon+monoxide+detector" target="_blank" rel="noopener">CO detector</a> — NON-NEGOTIABLE indoors</li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=wool+blanket+emergency+sleeping+bag" target="_blank" rel="noopener">Wool blankets, sleeping bags</a></li>
+        </ul>
+      </div>
+      <div class="card"><div class="tag">Cook</div>
+        <ul>
+          <li><a class="buy" href="https://www.amazon.com/s?k=camping+stove+propane+fuel+canister" target="_blank" rel="noopener">Camp stove + fuel canisters</a></li>
+          <li>Or propane grill you already own</li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=manual+can+opener" target="_blank" rel="noopener">Manual can opener</a> (obviously)</li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=ferro+rod+fire+starter" target="_blank" rel="noopener">Matches + 2 lighters + ferro rod</a></li>
+        </ul>
+      </div>
+      <div class="card"><div class="tag">Light</div>
+        <ul>
+          <li><a class="buy" href="https://www.amazon.com/s?k=led+headlamp+rechargeable" target="_blank" rel="noopener">6 × LED headlamps</a></li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=rechargeable+aa+aaa+batteries+charger" target="_blank" rel="noopener">Rechargeable AA/AAA + charger</a></li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=battery+lantern+camping" target="_blank" rel="noopener">3 lanterns (battery)</a></li>
+          <li>Never candles for lighting</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout red"><p style="margin:0"><b>Safety first:</b> Anything that burns indoors needs ventilation + a CO alarm. Generators stay <b>outside</b>, 20+ ft from windows.</p></div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">3 · Food — the Value Play</h2><span class="n">~$420 for 4 wks / 4 ppl</span></div>
+    <table>
+      <thead><tr><th>Staple</th><th>Amount</th><th>Est. cost</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><a class="buy" href="https://www.amazon.com/s?k=long+grain+white+rice+25+lb" target="_blank" rel="noopener">White rice (long grain)</a></td><td>50 lb</td><td class="num c">$44</td></tr>
+        <tr class="hl"><td><a class="buy" href="https://www.amazon.com/s?k=dry+beans+lentils+bulk+25+lb" target="_blank" rel="noopener">Dry beans / lentils</a></td><td>30 lb</td><td class="num c">$50</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=rolled+oats+bulk+25+lb" target="_blank" rel="noopener">Rolled oats</a></td><td>20 lb</td><td class="num c">$28</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=canned+tuna+chicken+bulk+case" target="_blank" rel="noopener">Canned meat / tuna</a></td><td>40 cans</td><td class="num c">$50</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=canned+vegetables+tomato+case" target="_blank" rel="noopener">Canned veg / tomato</a></td><td>40 cans</td><td class="num c">$46</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=creamy+peanut+butter+large+jar" target="_blank" rel="noopener">Peanut butter</a></td><td>6 large jars</td><td class="num c">$27</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=pasta+bulk+case+marinara+sauce" target="_blank" rel="noopener">Pasta + sauce</a></td><td>20 boxes / 10 jars</td><td class="num c">$36</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=shelf+stable+milk+quart" target="_blank" rel="noopener">Shelf-stable milk</a></td><td>12 qt</td><td class="num c">$28</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=olive+oil+salt+sugar+spices+bulk" target="_blank" rel="noopener">Salt, oil, sugar, spices</a></td><td>assorted</td><td class="num c">$30</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=mylar+bags+oxygen+absorbers+1+gallon" target="_blank" rel="noopener">Mylar bags + O₂ absorbers</a></td><td>100-pack</td><td class="num c">$30</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=emergency+food+supply+kids+snacks" target="_blank" rel="noopener">Kid snacks / easy-prep extras</a></td><td>assorted</td><td class="num c">$30</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td>~4 weeks, 4 people</td><td class="num c">$399</td></tr></tfoot>
+    </table>
+    <p class="sub" style="margin-top:14px">Freeze-dried "25-year buckets" are convenient but cost <b>3–5×</b> the same calories. Buy bulk staples, mylar + oxygen absorbers, and rotate.</p>
+    <p class="buynote">Links are Amazon search — pick the size/brand you want. No affiliate ties. <a class="buy" href="https://www.amazon.com/s?k=prepper+food+storage+mylar" target="_blank" rel="noopener">browse food storage</a></p>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">4 · Comms, Power, Cash, Meds</h2><span class="n">~$685</span></div>
+    <table>
+      <thead><tr><th>Item</th><th>Qty</th><th>Est. cost</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><a class="buy" href="https://www.amazon.com/Jackery-Portable-Explorer-Generator-Optional/dp/B082TMBYR6" target="_blank" rel="noopener">Jackery portable power station (Explorer class)</a></td><td>1</td><td class="num c">$260</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=noaa+weather+radio+hand+crank" target="_blank" rel="noopener">Hand-crank / battery NOAA weather radio</a></td><td>1</td><td class="num c">$35</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=power+bank+phone+portable+charger" target="_blank" rel="noopener">Power banks for phones</a></td><td>2</td><td class="num c">$50</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=frs+gmrs+two+way+radios" target="_blank" rel="noopener">FRS/GMRS radios — one per family member</a></td><td>4</td><td class="num c">$100</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=first+aid+kit+trauma+tourniquet+gauze" target="_blank" rel="noopener">First aid kit + trauma basics</a></td><td>1</td><td class="num c">$80</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=childrens+fever+reducer+oral+rehydration+salts" target="_blank" rel="noopener">Kids' meds: fever reducer, ORS, dosing</a></td><td>assorted</td><td class="num c">$30</td></tr>
+        <tr><td>Cash in small bills (+ copies of IDs/insurance)</td><td>—</td><td class="num c">$130</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td>excl. prescription stockpile</td><td class="num c">$685</td></tr></tfoot>
+    </table>
+    <div class="grid g2">
+      <div class="card"><div class="tag">Power &amp; comms</div>
+        <ul>
+          <li><a class="buy" href="https://www.amazon.com/Jackery-Portable-Explorer-Generator-Optional/dp/B082TMBYR6" target="_blank" rel="noopener">Jackery power station — $260</a> (seen price)</li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=noaa+weather+radio+hand+crank" target="_blank" rel="noopener">Hand-crank / battery NOAA weather radio</a></li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=power+bank+phone+portable+charger" target="_blank" rel="noopener">Power banks for phones (one per adult)</a></li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=frs+gmrs+two+way+radios" target="_blank" rel="noopener">FRS/GMRS radios — one per family member</a></li>
+        </ul>
+      </div>
+      <div class="card"><div class="tag">Money &amp; medicine</div>
+        <ul>
+          <li>$500–700 in small bills</li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=first+aid+kit+trauma+tourniquet+gauze" target="_blank" rel="noopener">First aid kit + trauma basics (tourniquet, gauze)</a></li>
+          <li>Prescriptions for all 4: legal 30–90 day stockpile</li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=childrens+fever+reducer+oral+rehydration+salts" target="_blank" rel="noopener">Kids' meds: fever reducer, ORS, kid-sized dosing</a></li>
+          <li>Copies of IDs, insurance, contacts (paper)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout"><p style="margin:0">Comms matter more than firepower in nearly every realistic scenario. And cash still works when cards don't.</p></div>
+    <p class="buynote">Links: exact product where known (Jackery), Amazon search otherwise. No affiliate ties.</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">Budget Summary</h2><span class="n">One-time</span></div>
+    <div class="grid g2" style="align-items:start">
+      <div class="card tint">
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>Water</span><span class="mono price">$353</span></div>
+        <div class="bar"><i style="width:26%"></i></div>
+        <div style="display:flex;justify-content:space-between;margin:12px 0 6px"><span>Heat / light / cook</span><span class="mono price">$340</span></div>
+        <div class="bar"><i style="width:27%"></i></div>
+        <div style="display:flex;justify-content:space-between;margin:12px 0 6px"><span>Food (4 wks)</span><span class="mono price">$399</span></div>
+        <div class="bar"><i style="width:31%"></i></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span>Comms / power / cash / meds</span><span class="mono price">$685</span></div>
+        <div class="bar"><i style="width:50%"></i></div>
+      </div>
+      <div>
+        <div class="card"><div class="label">Phase 1 setup</div><div class="big">$1,777</div></div>
+        <div class="card" style="margin-top:14px"><div class="label">Bare-minimum core</div><div class="big small">$775</div><p class="sub" style="margin:8px 0 0">Water drums + filter (28 gal) + propane heat/CO + 2 weeks of staples + cash. Everything else is incremental — the power station is the first big upgrade.</p></div>
+      </div>
+    </div>
+    <div class="callout"><p style="margin:0">This is the <b>Phase 1</b> kit. Adding the independent solar build (next slide) brings the all-in number to <b>$2,472</b>.</p></div>
+  </section>
+
+  <!-- 9 · Phase 2 -->
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">Phase 2 · Independent Solar</h2><span class="n">~$695</span></div>
+    <p class="sub" style="margin-top:4px">A standalone 12V system that charges without the grid and runs through an outage — separate from (and complementary to) the Jackery. Panel → controller → battery → fuse block → inverter.</p>
+    <table>
+      <thead><tr><th>Component</th><th>Spec</th><th>Est. cost</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td><a class="buy" href="https://www.amazon.com/s?k=100+watt+solar+panel+monocrystalline" target="_blank" rel="noopener">Solar panel</a></td><td>1 × 100W mono</td><td class="num c">$90</td></tr>
+        <tr class="hl"><td><a class="buy" href="https://www.amazon.com/s?k=lifepo4+battery+12v+100ah" target="_blank" rel="noopener">LiFePO₄ battery (BMS built-in)</a></td><td>1 × 100Ah 12V</td><td class="num c">$280</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=mppt+solar+charge+controller+30a" target="_blank" rel="noopener">MPPT charge controller</a></td><td>30A</td><td class="num c">$40</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=pure+sine+wave+inverter+12v+1000w" target="_blank" rel="noopener">Pure-sine inverter</a></td><td>500–1000W</td><td class="num c">$100</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=12v+fuse+block+breaker+anl+fuse" target="_blank" rel="noopener">Fuse box + breakers / ANL fuses</a></td><td>set</td><td class="num c">$45</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=12v+battery+cable+lugs+mc4+connectors" target="_blank" rel="noopener">Wire, lugs, MC4, connectors, shunt</a></td><td>set</td><td class="num c">$70</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=battery+monitor+voltmeter+12v" target="_blank" rel="noopener">Battery monitor / voltmeter</a></td><td>1</td><td class="num c">$30</td></tr>
+        <tr><td><a class="buy" href="https://www.amazon.com/s?k=solar+panel+mounting+bracket+enclosure" target="_blank" rel="noopener">Mounting / enclosure / misc</a></td><td>set</td><td class="num c">$40</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td>independent 100W / 100Ah system</td><td class="num c">$695</td></tr></tfoot>
+    </table>
+    <div class="grid g2">
+      <div class="card"><div class="tag">What it runs</div>
+        <ul>
+          <li>Phones, radios, LED lights, laptop</li>
+          <li>CPAP / small medical devices</li>
+          <li>Small fridge or freezer cycling on/off</li>
+          <li>~1 kWh/day harvest in decent sun</li>
+        </ul>
+      </div>
+      <div class="card"><div class="tag">Why it's separate</div>
+        <ul>
+          <li>Charges with zero grid — all-day solar</li>
+          <li>Swap/upgrade parts individually</li>
+          <li>Redundancy: two independent power paths</li>
+          <li>Battery is the expensive half — buy once</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout red"><p style="margin:0"><b>Safety:</b> 12V + lithium still needs correct fusing, cable sizing, and a BMS. If wiring is new to you, buy a kit or get it checked — don't freestyle 100Ah LFP.</p></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">Skip List</h2><span class="n">Where money goes to die</span></div>
+    <div class="grid g2">
+      <div class="card" style="border-color:rgba(226,96,74,.35)"><div class="tag" style="color:var(--warn)">Skip</div>
+        <ul>
+          <li>Gold / silver coins as a "grid-down hedge"</li>
+          <li>Bulk ammunition</li>
+          <li>Tactical / camo gear</li>
+          <li>MRE cases (pay 5× for mediocre food)</li>
+          <li>Gas masks &amp; "bug-out" cosplay</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(77,208,167,.35)"><div class="tag">Do instead</div>
+        <ul>
+          <li>Emergency fund in cash</li>
+          <li>Pay down high-interest debt</li>
+          <li>Normal inflation-resistant portfolio</li>
+          <li>Rotate your staple pantry monthly</li>
+          <li>Know your neighbors — real resilience</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout red"><p style="margin:0">These items are the <b>least liquid</b> in a real disruption, the easiest to overpay for while scared, and not one of them feeds you.</p></div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide">
+    <div class="kicker">Action plan</div>
+    <h2>Do it in 4 steps, not one panicked weekend</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Week 1</h3>
+        <div class="check"><div class="box"></div><span>Water drums (55-gal) + gravity filter — 28 gal stored</span></div>
+        <div class="check"><div class="box"></div><span>CO detector + one propane tank &amp; heater</span></div>
+        <div class="check"><div class="box"></div><span>$500 cash in small bills</span></div>
+      </div>
+      <div class="card">
+        <h3>Week 2</h3>
+        <div class="check"><div class="box"></div><span>2 weeks of staples + mylar/O₂ absorbers</span></div>
+        <div class="check"><div class="box"></div><span>Headlamps, batteries, NOAA radio</span></div>
+      </div>
+      <div class="card">
+        <h3>Week 3</h3>
+        <div class="check"><div class="box"></div><span>Second propane tank + camp stove</span></div>
+        <div class="check"><div class="box"></div><span>First aid + prescription stockpile</span></div>
+      </div>
+      <div class="card">
+        <h3>Ongoing</h3>
+        <div class="check"><div class="box"></div><span>Rotate pantry monthly (eat oldest)</span></div>
+        <div class="check"><div class="box"></div><span>Solar + battery bank when budget allows</span></div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:auto">The goal isn't a bunker. It's a boring Tuesday you barely notice.</div>
+  </section>
+
+</div>
+
+<div class="hud">
+  <div>Volt Labs · Preparedness Brief · <span id="counter">1 / 11</span></div>
+  <div class="pips" id="pips"></div>
+  <div class="nav">
+    <button id="prev">◀ Prev</button>
+    <button id="next">Next ▶</button>
+  </div>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const pips=document.getElementById('pips');
+  const counter=document.getElementById('counter');
+  const progress=document.getElementById('progress');
+  let i=0, printing=false;
+  slides.forEach((s,n)=>{const d=document.createElement('div');d.className='pip'+(n===0?' on':'');d.onclick=()=>go(n);pips.appendChild(d)});
+  const pipEls=[...pips.children];
+  function go(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i));pipEls.forEach((p,k)=>p.classList.toggle('on',k===i));counter.textContent=(i+1)+' / '+slides.length;progress.style.width=((i+1)/slides.length*100)+'%';document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===slides.length-1;}
+  document.getElementById('next').onclick=()=>go(i+1);
+  document.getElementById('prev').onclick=()=>go(i-1);
+  addEventListener('keydown',e=>{
+    if(printing)return;
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();go(i+1)}
+    if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(i-1)}
+    if(e.key==='Home')go(0); if(e.key==='End')go(slides.length-1);
+    if(e.key==='p'||e.key==='P'){printing=true;slides.forEach(s=>s.classList.add('active'));progress.style.display='none';document.querySelector('.hud').style.display='none';document.body.style.overflow='auto';document.querySelector('.deck').style.position='static';document.querySelector('.deck').style.overflow='visible';setTimeout(()=>{print();slides.forEach((s,k)=>s.classList.toggle('active',k===i));progress.style.display='';document.querySelector('.hud').style.display='';document.body.style.overflow='hidden';document.querySelector('.deck').style.position='';document.querySelector('.deck').style.overflow='';printing=false},80)}
+  });
+  let sx=null;
+  addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)go(i+(dx<0?1:-1));sx=null},{passive:true});
+  go(0);
+</script>
+</body>
+</html>
