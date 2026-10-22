@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Housatonic Proximity — Bug-Out & Flood Plan</title>
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#121a23; --panel2:#16202b; --ink:#e8eef5; --dim:#93a4b5;
+    --accent:#4dd0a7; --accent2:#f2b84b; --warn:#e2604a; --water:#4aa8e2; --line:#233040;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+  body{display:flex;flex-direction:column;overflow:hidden}
+  .deck{flex:1;position:relative;overflow:hidden}
+  .slide{position:absolute;inset:0;padding:clamp(24px,3vw,48px) clamp(20px,3.6vw,64px);display:none;flex-direction:column;animation:fade .28s ease;overflow-y:auto}
+  .slide.active{display:flex}
+  .slide > *{width:100%;max-width:1240px;margin-left:auto;margin-right:auto}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .kicker{font-family:var(--mono);text-transform:uppercase;letter-spacing:.18em;font-size:clamp(11px,1vw,14px);color:var(--accent);margin-bottom:10px}
+  .kicker.water{color:var(--water)}
+  h1{font-size:clamp(30px,4.6vw,62px);line-height:1.04;margin:0 0 14px;font-weight:800;letter-spacing:-.02em}
+  h2{font-size:clamp(24px,3.1vw,44px);line-height:1.08;margin:0 0 16px;font-weight:800;letter-spacing:-.015em}
+  h3{font-size:clamp(16px,1.5vw,21px);margin:0 0 6px;font-weight:700}
+  p{color:var(--dim);font-size:clamp(14px,1.15vw,17px);line-height:1.55;margin:0 0 12px}
+  .lede{color:var(--ink);font-size:clamp(16px,1.5vw,21px);line-height:1.5}
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media(max-width:800px){.g2,.g3{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .card.water{border-color:#1f4a68;background:linear-gradient(180deg,#0e1c28,#121a23)}
+  .card.warn{border-color:#5a2a22;background:linear-gradient(180deg,#1d1210,#121a23)}
+  .card h3{margin-bottom:8px}
+  ul{margin:0;padding-left:18px;color:var(--dim);font-size:clamp(13px,1.05vw,16px);line-height:1.6}
+  li{margin:3px 0}
+  li strong, .card strong{color:var(--ink)}
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--dim)}
+  .tag.go{color:#0b0f14;background:var(--accent);border-color:var(--accent);font-weight:700}
+  .tag.wait{color:#0b0f14;background:var(--accent2);border-color:var(--accent2);font-weight:700}
+  .tag.no{color:var(--warn);border-color:#5a2a22}
+  .big{font-size:clamp(34px,5vw,68px);font-weight:800;letter-spacing:-.02em;line-height:1}
+  .metric{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .metric .m{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;min-width:150px}
+  .metric .m .k{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim)}
+  .metric .m .v{font-size:clamp(18px,2vw,26px);font-weight:800;margin-top:2px}
+  table{width:100%;border-collapse:collapse;font-size:clamp(12px,1vw,15px)}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);font-weight:600}
+  td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+  .tier{font-family:var(--mono);font-size:12px;font-weight:700;padding:2px 7px;border-radius:6px}
+  .t1{background:#3a1a15;color:#ffb2a3}
+  .t2{background:#3a2f15;color:#ffdf9e}
+  .t3{background:#16301f;color:#a7e9c3}
+  .nav{display:flex;align-items:center;gap:14px;padding:10px clamp(20px,3.6vw,64px);border-top:1px solid var(--line);background:var(--panel);font-family:var(--mono);font-size:12px;color:var(--dim)}
+  .nav .sp{flex:1}
+  .nav button{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:7px 14px;font-family:var(--mono);font-size:12px;cursor:pointer}
+  .nav button:hover{border-color:var(--accent);color:var(--accent)}
+  .note{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:10px}
+  .flag{color:var(--accent2);font-weight:700}
+  .danger{color:var(--warn);font-weight:700}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:8px}
+  .flow .step{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 10px;color:var(--ink)}
+  .flow .arw{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide active">
+    <div class="kicker water">Volt Labs · Preparedness Brief · Addendum A</div>
+    <h1>You're walking distance from the Housatonic.<br>That changes the plan.</h1>
+    <p class="lede">The 2–4 week pantry plan still holds. But living inside the river's reach adds a second, sharper axis: <strong>water that arrives with a warning and leaves a mess.</strong> This addendum separates the two.</p>
+    <div class="grid g3" style="margin-top:8px">
+      <div class="card water"><h3>🌊 Flood axis</h3><p>Localized. Gives hours of warning. Threat is <strong>elevation and access</strong>, not distance.</p></div>
+      <div class="card"><h3>🥫 Grid-down axis</h3><p>Regional. No warning. Threat is <strong>duration and resupply</strong> — the original deck.</p></div>
+      <div class="card warn"><h3>⚠️ The trap</h3><p>The two <strong>overlap</strong> in the worst events (hurricane → multi-day outage). Plan for the overlap, not either alone.</p></div>
+    </div>
+    <div class="note">Use ← → / space. Press P to print. Sheet 1 of 7.</div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <div class="kicker">First, the honest read</div>
+    <h2>The river is the best water source you have — and the biggest variable</h2>
+    <p class="lede">Two things are true at once, and neither cancels the other.</p>
+    <div class="grid g2">
+      <div class="card water">
+        <h3>What proximity gives you</h3>
+        <ul>
+          <li><strong>Unlimited raw water</strong> — a 55-gal drum isn't your ceiling, the river is (with treatment).</li>
+          <li><strong>A natural firebreak of low ground</strong> between you and main-road chaos if your block is on the high side.</li>
+          <li><strong>Wild food</strong> — fishing/foraging is a real supplement, and a morale one.</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <h3>What proximity costs you</h3>
+        <ul>
+          <li><strong>Evacuation risk, not starvation risk.</strong> The river rarely starves anyone; it relocates them.</li>
+          <li><strong>Access loss</strong> — low bridges and river roads flood <em>first</em> and dry <em>last</em>.</li>
+          <li><strong>Contaminated water</strong> — floodwater is sewage + fuel + farm runoff. Treat it like hazmat.</li>
+          <li><strong>Insurance + sellability</strong> drag in the floodplain (outside prep, but real).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Sheet 2 of 7.</div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <div class="kicker">The one number that decides everything</div>
+    <h2>Vertical feet, not miles</h2>
+    <p class="lede">"Walking distance" is about the horizontal. Flood risk is about the <strong>vertical</strong>. Everything below hinges on one measurement.</p>
+    <div class="metric">
+      <div class="m"><div class="k">Your ground elevation</div><div class="v" id="m1">___ ft</div></div>
+      <div class="m"><div class="k">Nearest bridge deck</div><div class="v" id="m2">___ ft</div></div>
+      <div class="m"><div class="k">High-ground route top</div><div class="v" id="m3">___ ft</div></div>
+      <div class="m"><div class="k">Delta (yours − bridge)</div><div class="v" id="m4">___ ft</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <h3>How to fill this in (30 minutes)</h3>
+        <ul>
+          <li>FEMA flood map service (msc.fema.gov) → your address → look at the zone code.</li>
+          <li>USGS StreamStats or a topo map for spot elevations.</li>
+          <li>Walk the two candidate exits and note the elevation at the pinch points.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>How to read the delta</h3>
+        <ul>
+          <li><span class="tag go">≥ +30 ft</span> &nbsp;You're above the realistic flood envelope. Bug-in is the plan.</li>
+          <li><span class="tag wait">+10 to +30 ft</span> &nbsp;Gray zone. Pre-stage go-bags; decide on the NWS forecast, not the vibe.</li>
+          <li><span class="tag no">≤ +10 ft</span> &nbsp;You're in it. Evacuate early; the pantry stays behind.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">FEMA zone codes: AE/A (1% annual = "100-yr"), X-shaded (0.2%), X (minimal). Zones are a screening tool — not a promise about your exact lot. Sheet 3 of 7.</div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <div class="kicker">Tiered response</div>
+    <h2>Four tiers, one trigger each</h2>
+    <p class="lede">Don't decide under stress. Decide now, and let the trigger decide for you.</p>
+    <table>
+      <tr><th>Trigger</th><th>What it means</th><th>What you do</th></tr>
+      <tr>
+        <td><span class="tier t3">Tier 0</span> Watch</td>
+        <td>NWS flood watch / river forecast rising</td>
+        <td>Freeze the plan. Charge everything, top off water drums and vehicle fuel, move the go-bag to the door, screenshot the NWS hydrograph.</td>
+      </tr>
+      <tr>
+        <td><span class="tier t2">Tier 1</span> Stage</td>
+        <td>Flood warning, or forecast crest <em>above</em> your delta</td>
+        <td>Vehicle loaded and parked pointing at high ground. Upstairs: valuables, documents, meds, one week of clothes. Prescriptions re-filled <em>now</em>. Check on the two neighbors who are worse off than you.</td>
+      </tr>
+      <tr>
+        <td><span class="tier t1">Tier 2</span> Move</td>
+        <td>Evacuation order, or water on your access route</td>
+        <td><strong>Leave on your own terms, not the county's.</strong> Cards work for gas before the region goes dark. Take the high-ground route, not the short one. Go to the rally point (sheet 5).</td>
+      </tr>
+      <tr>
+        <td><span class="tier t1">Tier 3</span> Out</td>
+        <td>Water at or above the main floor, or 48h+ of no power <em>and</em> no clean water</td>
+        <td>Bug-out. The default for a "river at the door" event. The 4-week pantry is <strong>not</strong> a reason to stay — it keeps working for the neighbors or for when you return.</td>
+      </tr>
+    </table>
+    <div class="note">Rule: the river floods fast and recedes slow. Being wrong on the early side costs an uncomfortable night; being wrong on the late side costs the plan. Sheet 4 of 7.</div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <div class="kicker water">Geography</div>
+    <h2>Two real rally points — need your two picks</h2>
+    <p class="lede">A rally point you haven't driven is a rumor. These need to be filled in with places you can reach <strong>without crossing a bridge</strong> and through elevations you've verified.</p>
+    <div class="grid g2">
+      <div class="card water">
+        <h3>Primary rally <span class="flag" id="rp1">⬜ TBD</span></h3>
+        <ul>
+          <li>Candidate: a friend/relative <strong>out of the watershed and up-elevation</strong>.</li>
+          <li>Must be reachable uphill, ideally west or northwest off the valley floor.</li>
+          <li>Holds a copy of the go-bag's document pack.</li>
+        </ul>
+      </div>
+      <div class="card water">
+        <h3>Secondary rally <span class="flag" id="rp2">⬜ TBD</span></h3>
+        <ul>
+          <li>A hotel / town north or south along higher ground, booked early.</li>
+          <li>Not on the river side of any bridge.</li>
+          <li>Not a shelter — shelters are last resort (pets, meds, crowd).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3>Route rules</h3>
+      <div class="flow">
+        <span class="step">Verify elevation at pinch point</span><span class="arw">→</span>
+        <span class="step">Confirm no low bridge</span><span class="arw">→</span>
+        <span class="step">Drive it in daylight</span><span class="arw">→</span>
+        <span class="step">Drive it at night</span><span class="arw">→</span>
+        <span class="step">Store in the go-bag</span>
+      </div>
+      <p style="margin-top:10px">Note the roads that close <em>first</em> — usually the ones hugging the river. Those are never your route.</p>
+    </div>
+    <div class="note">Google Maps works until the grid doesn't. Print the route and keep a paper topo in the vehicle. Sheet 5 of 7.</div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <div class="kicker">Kit &amp; gaps</div>
+    <h2>What the river adds — beyond the 2–4 week deck</h2>
+    <p class="lede">Smaller money than the original plan, but the highest-consequence items in the whole stack.</p>
+    <table>
+      <tr><th>Item</th><th>Why</th><th>Est.</th></tr>
+      <tr><td>Secondary water filter</td><td>River water is the backup to the drums — and the drums may be underwater</td><td>$38</td></tr>
+      <tr><td>Waterproof document tube</td><td>Deeds, IDs, insurance, passports — flood ruins paper first</td><td>$25</td></tr>
+      <tr><td>Waterproof go-bag / dry bags</td><td>The bug-out bag must survive being loaded in rain and wading</td><td>$45</td></tr>
+      <tr><td>Waterproof boots per adult</td><td>The yard <em>will</em> be water. Rubber, tall, not stylish</td><td>$80</td></tr>
+      <tr><td>Waders or tall boots (1 set)</td><td>For moving the last items and checking on the block</td><td>$60</td></tr>
+      <tr><td>Battery / hand pump + hose</td><td>Fill drums and vehicle containers from the river if mains fail</td><td>$45</td></tr>
+      <tr><td>Extended prescription buffer</td><td>Evacuation lasts longer than the event; refill <em>before</em> the warning</td><td>—</td></tr>
+      <tr><td>Cash in small bills (top-up)</td><td>Pre-paid gas + a hotel night + food on the road</td><td>$200</td></tr>
+    </table>
+    <div class="metric" style="margin-top:12px">
+      <div class="m"><div class="k">Add'l one-time</div><div class="v">≈ $493</div></div>
+      <div class="m"><div class="k">Brings all-in to</div><div class="v">≈ $2,965</div></div>
+      <div class="m"><div class="k">Highest-value item</div><div class="v" style="font-size:16px">Doc tube</div></div>
+    </div>
+    <div class="note">The river also makes your <strong>stored water a liability if it's in the garage at grade</strong> — move drums above the line you measured on sheet 3. Sheet 6 of 7.</div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <div class="kicker">The bottom line</div>
+    <h2>Which plan wins?</h2>
+    <div class="grid g2">
+      <div class="card water">
+        <h3>🌊 For the river: <span class="flag">BUG OUT</span></h3>
+        <p>A river flood is a <strong>localized, forecastable</strong> event with hours of warning. The correct play is early, uphill, and boring: load the car, drive the route you rehearsed, be somewhere dry before the peak. You are not defending a position against water.</p>
+      </div>
+      <div class="card">
+        <h3>🥫 For the grid: <span class="flag">BUG IN</span></h3>
+        <p>A grid-down event is <strong>regional and open-ended</strong>. Your house is the shelter, the pantry is the supply, and leaving means abandoning both into a system with no resupply. Stay — unless the <em>river</em> axis fires at the same time.</p>
+      </div>
+    </div>
+    <div class="card warn" style="margin-top:14px">
+      <h3>⚠️ The overlap is the real scenario</h3>
+      <p>A hurricane or a multi-day ice storm hits <em>both</em> axes: no power for a week <strong>and</strong> flood conditions. For that one, the answer is <strong>bug out early</strong> — because you lose the grid plan anyway the moment water reaches your access route. Decide the overlap case now; it's the one that will actually happen.</p>
+    </div>
+    <div class="note">Next: fill in the four numbers on sheet 3 and name the two rally points on sheet 5, or it stays a thought experiment. Sheet 7 of 7.</div>
+  </section>
+
+</div>
+<div class="nav">
+  <button onclick="go(-1)">◀ Prev</button>
+  <span id="pg">1 / 7</span>
+  <button onclick="go(1)">Next ▶</button>
+  <span class="sp"></span>
+  <span>Housatonic Proximity · Bug-Out &amp; Flood Addendum</span>
+</div>
+<script>
+var i=0, sl=document.querySelectorAll('.slide'), pg=document.getElementById('pg');
+function show(n){ i=Math.max(0,Math.min(sl.length-1,n));
+  sl.forEach((s,k)=>s.classList.toggle('active',k===i));
+  pg.textContent=(i+1)+' / '+sl.length; }
+function go(d){ show(i+d); }
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(1);}
+  if(e.key==='ArrowLeft'){e.preventDefault();go(-1);}
+  if(e.key==='p'||e.key==='P'){window.print();}
+});
+var sx=null;
+document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',e=>{ if(sx===null)return;
+  var dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50) go(dx<0?1:-1); sx=null;},{passive:true});
+</script>
+</body>
+</html>
