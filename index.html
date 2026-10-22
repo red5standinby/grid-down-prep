@@ -134,7 +134,6 @@
   .stat .label{font-family:var(--mono);font-size:clamp(12px,1vw,14px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
   @media (max-width:900px){.stats{grid-template-columns:1fr}
     .stat{flex-direction:row;align-items:baseline;justify-content:flex-start;gap:14px}.stat::before{height:100%;width:4px;background:linear-gradient(180deg,var(--accent),transparent)}}
-
   /* ============ MOBILE: horizontal swipe feed ============ */
   @media (max-width:640px){
     html,body{height:100%;overflow:hidden}
@@ -199,11 +198,11 @@
     }
     table td:first-child{display:block;font-weight:600;margin-bottom:6px}
     table td:not(:first-child)::before{content:attr(data-label);font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-        <tr class="hl"><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=55+gallon+food+grade+water+storage+drum" target="_blank" rel="noopener">55-gal food-grade water drums (garage, rotated)</a></td><td data-label="Qty">2</td><td data-label="Est. cost">$248</td></tr>
-        <tr class="hl"><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=gravity+water+filter+berkey+sawyer+lifestraw" target="_blank" rel="noopener">Gravity filter (Sawyer / Lifestraw family / Berkey)</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$38</td></tr>
-        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=aquatabs+water+purification+tablets" target="_blank" rel="noopener">Unscented bleach (8.25%) + Aquatabs/PUR backup</a></td><td data-label="Qty">assorted</td><td data-label="Est. cost">$22</td></tr>
-        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=drinking+water+test+kit+well+bacteria" target="_blank" rel="noopener">Water testing kit (bacteria + basic chemistry)</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$25</td></tr>
-        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=drinking+water+hose+rv+potable" target="_blank" rel="noopener">Potable hose / pump / fittings + labels</a></td><td data-label="Qty">set</td><td data-label="Est. cost">$20</td></tr>
+    table td.num,table td.c{text-align:right}
+    table tfoot tr{background:linear-gradient(160deg,rgba(77,208,167,.12),rgba(77,208,167,.03));border-color:rgba(77,208,167,.35)}
+    table tfoot td{font-size:16px}
+    .slide-head{flex-direction:column;align-items:flex-start;gap:6px}
+    .card{padding:16px}
     .slide-head .n{white-space:normal}
   }
 </style>
@@ -267,17 +266,23 @@
   </section>
 
   <!-- 4 -->
-        <tr class="hl"><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=long+grain+white+rice+25+lb" target="_blank" rel="noopener">White rice (long grain)</a></td><td data-label="Amount">50 lb</td><td data-label="Est. cost">$44</td></tr>
-        <tr class="hl"><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=dry+beans+lentils+bulk+25+lb" target="_blank" rel="noopener">Dry beans / lentils</a></td><td data-label="Amount">30 lb</td><td data-label="Est. cost">$50</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=rolled+oats+bulk+25+lb" target="_blank" rel="noopener">Rolled oats</a></td><td data-label="Amount">20 lb</td><td data-label="Est. cost">$28</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=canned+tuna+chicken+bulk+case" target="_blank" rel="noopener">Canned meat / tuna</a></td><td data-label="Amount">40 cans</td><td data-label="Est. cost">$50</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=canned+vegetables+tomato+case" target="_blank" rel="noopener">Canned veg / tomato</a></td><td data-label="Amount">40 cans</td><td data-label="Est. cost">$46</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=creamy+peanut+butter+large+jar" target="_blank" rel="noopener">Peanut butter</a></td><td data-label="Amount">6 large jars</td><td data-label="Est. cost">$27</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=pasta+bulk+case+marinara+sauce" target="_blank" rel="noopener">Pasta + sauce</a></td><td data-label="Amount">20 boxes / 10 jars</td><td data-label="Est. cost">$36</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=shelf+stable+milk+quart" target="_blank" rel="noopener">Shelf-stable milk</a></td><td data-label="Amount">12 qt</td><td data-label="Est. cost">$28</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=olive+oil+salt+sugar+spices+bulk" target="_blank" rel="noopener">Salt, oil, sugar, spices</a></td><td data-label="Amount">assorted</td><td data-label="Est. cost">$30</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=mylar+bags+oxygen+absorbers+1+gallon" target="_blank" rel="noopener">Mylar bags + O₂ absorbers</a></td><td data-label="Amount">100-pack</td><td data-label="Est. cost">$30</td></tr>
-        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=emergency+food+supply+kids+snacks" target="_blank" rel="noopener">Kid snacks / easy-prep extras</a></td><td data-label="Amount">assorted</td><td data-label="Est. cost">$30</td></tr>
+  <section class="slide">
+    <div class="slide-head"><h2 style="margin:0">1 · Water</h2><span class="n">~$353</span></div>
+    <table>
+      <thead><tr><th>Item</th><th>Qty</th><th>Est. cost</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=55+gallon+food+grade+water+storage+drum" target="_blank" rel="noopener">55-gal food-grade water drums (garage, rotated)</a></td><td data-label="Qty">2</td><td data-label="Est. cost">$248</td></tr>
+        <tr class="hl"><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=gravity+water+filter+berkey+sawyer+lifestraw" target="_blank" rel="noopener">Gravity filter (Sawyer / Lifestraw family / Berkey)</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$38</td></tr>
+        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=aquatabs+water+purification+tablets" target="_blank" rel="noopener">Unscented bleach (8.25%) + Aquatabs/PUR backup</a></td><td data-label="Qty">assorted</td><td data-label="Est. cost">$22</td></tr>
+        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=drinking+water+test+kit+well+bacteria" target="_blank" rel="noopener">Water testing kit (bacteria + basic chemistry)</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$25</td></tr>
+        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=drinking+water+hose+rv+potable" target="_blank" rel="noopener">Potable hose / pump / fittings + labels</a></td><td data-label="Qty">set</td><td data-label="Est. cost">$20</td></tr>
+      </tbody>
+      <tfoot><tr><td data-label="Item">Total</td><td data-label="Qty">28 gal stored · 4 people, 1 week</td><td data-label="Est. cost">$353</td></tr></tfoot>
+    </table>
+    <div class="grid g2">
+      <div class="card"><div class="tag">Storage</div>
+        <ul>
+          <li>2 × 55-gal food-grade drums (garage) — rotated</li>
           <li>Or 20 × 1-gal jugs, stacked &amp; dated</li>
           <li>Water stored = 28 gal for 4 people, 1 week</li>
           <li>Keep out of sunlight; rotate every 6–12 mo</li>
@@ -291,13 +296,13 @@
           <li>PUR / Aquatabs as backup</li>
           <li>Filter handles thousands of gallons</li>
         </ul>
-        <tr class="hl"><td data-label="Item"><a class="buy" href="https://www.amazon.com/Jackery-Portable-Explorer-Generator-Optional/dp/B082TMBYR6" target="_blank" rel="noopener">Jackery portable power station (Explorer class)</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$260</td></tr>
-        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=noaa+weather+radio+hand+crank" target="_blank" rel="noopener">Hand-crank / battery NOAA weather radio</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$35</td></tr>
-        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=power+bank+phone+portable+charger" target="_blank" rel="noopener">Power banks for phones</a></td><td data-label="Qty">2</td><td data-label="Est. cost">$50</td></tr>
-        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=frs+gmrs+two+way+radios" target="_blank" rel="noopener">FRS/GMRS radios — one per family member</a></td><td data-label="Qty">4</td><td data-label="Est. cost">$100</td></tr>
-        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=first+aid+kit+trauma+tourniquet+gauze" target="_blank" rel="noopener">First aid kit + trauma basics</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$80</td></tr>
-        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=childrens+fever+reducer+oral+rehydration+salts" target="_blank" rel="noopener">Kids' meds: fever reducer, ORS, dosing</a></td><td data-label="Qty">assorted</td><td data-label="Est. cost">$30</td></tr>
-        <tr><td data-label="Item">Cash in small bills (+ copies of IDs/insurance)</td><td data-label="Qty">—</td><td data-label="Est. cost">$130</td></tr>
+      </div>
+    </div>
+    <div class="callout"><p style="margin:0"><b>Rule of thumb:</b> 1 gal/person/day drinking + 0.5 gal for hygiene. Double it if you have pets or it's summer.</p></div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
     <div class="slide-head"><h2 style="margin:0">2 · Heat, Light &amp; Cooking</h2><span class="n">~$340</span></div>
     <div class="grid g3">
       <div class="card"><div class="tag">Heat</div>
@@ -334,7 +339,19 @@
     <table>
       <thead><tr><th>Staple</th><th>Amount</th><th>Est. cost</th></tr></thead>
       <tbody>
+        <tr class="hl"><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=long+grain+white+rice+25+lb" target="_blank" rel="noopener">White rice (long grain)</a></td><td data-label="Amount">50 lb</td><td data-label="Est. cost">$44</td></tr>
+        <tr class="hl"><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=dry+beans+lentils+bulk+25+lb" target="_blank" rel="noopener">Dry beans / lentils</a></td><td data-label="Amount">30 lb</td><td data-label="Est. cost">$50</td></tr>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=rolled+oats+bulk+25+lb" target="_blank" rel="noopener">Rolled oats</a></td><td data-label="Amount">20 lb</td><td data-label="Est. cost">$28</td></tr>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=canned+tuna+chicken+bulk+case" target="_blank" rel="noopener">Canned meat / tuna</a></td><td data-label="Amount">40 cans</td><td data-label="Est. cost">$50</td></tr>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=canned+vegetables+tomato+case" target="_blank" rel="noopener">Canned veg / tomato</a></td><td data-label="Amount">40 cans</td><td data-label="Est. cost">$46</td></tr>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=creamy+peanut+butter+large+jar" target="_blank" rel="noopener">Peanut butter</a></td><td data-label="Amount">6 large jars</td><td data-label="Est. cost">$27</td></tr>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=pasta+bulk+case+marinara+sauce" target="_blank" rel="noopener">Pasta + sauce</a></td><td data-label="Amount">20 boxes / 10 jars</td><td data-label="Est. cost">$36</td></tr>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=shelf+stable+milk+quart" target="_blank" rel="noopener">Shelf-stable milk</a></td><td data-label="Amount">12 qt</td><td data-label="Est. cost">$28</td></tr>
       </tbody>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=olive+oil+salt+sugar+spices+bulk" target="_blank" rel="noopener">Salt, oil, sugar, spices</a></td><td data-label="Amount">assorted</td><td data-label="Est. cost">$30</td></tr>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=mylar+bags+oxygen+absorbers+1+gallon" target="_blank" rel="noopener">Mylar bags + O₂ absorbers</a></td><td data-label="Amount">100-pack</td><td data-label="Est. cost">$30</td></tr>
+        <tr><td data-label="Staple"><a class="buy" href="https://www.amazon.com/s?k=emergency+food+supply+kids+snacks" target="_blank" rel="noopener">Kid snacks / easy-prep extras</a></td><td data-label="Amount">assorted</td><td data-label="Est. cost">$30</td></tr>
+      <tfoot><tr><td data-label="Staple">Total</td><td data-label="Amount">~4 weeks, 4 people</td><td data-label="Est. cost">$399</td></tr></tfoot>
     </table>
     <p class="sub" style="margin-top:14px">Freeze-dried "25-year buckets" are convenient but cost <b>3–5×</b> the same calories. Buy bulk staples, mylar + oxygen absorbers, and rotate.</p>
     <p class="buynote">Links are Amazon search — pick the size/brand you want. No affiliate ties. <a class="buy" href="https://www.amazon.com/s?k=prepper+food+storage+mylar" target="_blank" rel="noopener">browse food storage</a></p>
@@ -346,21 +363,29 @@
     <table>
       <thead><tr><th>Item</th><th>Qty</th><th>Est. cost</th></tr></thead>
       <tbody>
+        <tr class="hl"><td data-label="Item"><a class="buy" href="https://www.amazon.com/Jackery-Portable-Explorer-Generator-Optional/dp/B082TMBYR6" target="_blank" rel="noopener">Jackery portable power station (Explorer class)</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$260</td></tr>
+        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=noaa+weather+radio+hand+crank" target="_blank" rel="noopener">Hand-crank / battery NOAA weather radio</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$35</td></tr>
+        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=power+bank+phone+portable+charger" target="_blank" rel="noopener">Power banks for phones</a></td><td data-label="Qty">2</td><td data-label="Est. cost">$50</td></tr>
+        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=frs+gmrs+two+way+radios" target="_blank" rel="noopener">FRS/GMRS radios — one per family member</a></td><td data-label="Qty">4</td><td data-label="Est. cost">$100</td></tr>
+        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=first+aid+kit+trauma+tourniquet+gauze" target="_blank" rel="noopener">First aid kit + trauma basics</a></td><td data-label="Qty">1</td><td data-label="Est. cost">$80</td></tr>
+        <tr><td data-label="Item"><a class="buy" href="https://www.amazon.com/s?k=childrens+fever+reducer+oral+rehydration+salts" target="_blank" rel="noopener">Kids' meds: fever reducer, ORS, dosing</a></td><td data-label="Qty">assorted</td><td data-label="Est. cost">$30</td></tr>
+        <tr><td data-label="Item">Cash in small bills (+ copies of IDs/insurance)</td><td data-label="Qty">—</td><td data-label="Est. cost">$130</td></tr>
       </tbody>
+      <tfoot><tr><td data-label="Item">Total</td><td data-label="Qty">excl. prescription stockpile</td><td data-label="Est. cost">$685</td></tr></tfoot>
     </table>
     <div class="grid g2">
       <div class="card"><div class="tag">Power &amp; comms</div>
         <ul>
           <li><a class="buy" href="https://www.amazon.com/Jackery-Portable-Explorer-Generator-Optional/dp/B082TMBYR6" target="_blank" rel="noopener">Jackery power station — $260</a> (seen price)</li>
           <li><a class="buy" href="https://www.amazon.com/s?k=noaa+weather+radio+hand+crank" target="_blank" rel="noopener">Hand-crank / battery NOAA weather radio</a></li>
-        <tr class="hl"><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=100+watt+solar+panel+monocrystalline" target="_blank" rel="noopener">Solar panel</a></td><td data-label="Spec">1 × 100W mono</td><td data-label="Est. cost">$90</td></tr>
-        <tr class="hl"><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=lifepo4+battery+12v+100ah" target="_blank" rel="noopener">LiFePO₄ battery (BMS built-in)</a></td><td data-label="Spec">1 × 100Ah 12V</td><td data-label="Est. cost">$280</td></tr>
-        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=mppt+solar+charge+controller+30a" target="_blank" rel="noopener">MPPT charge controller</a></td><td data-label="Spec">30A</td><td data-label="Est. cost">$40</td></tr>
-        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=pure+sine+wave+inverter+12v+1000w" target="_blank" rel="noopener">Pure-sine inverter</a></td><td data-label="Spec">500–1000W</td><td data-label="Est. cost">$100</td></tr>
-        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=12v+fuse+block+breaker+anl+fuse" target="_blank" rel="noopener">Fuse box + breakers / ANL fuses</a></td><td data-label="Spec">set</td><td data-label="Est. cost">$45</td></tr>
-        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=12v+battery+cable+lugs+mc4+connectors" target="_blank" rel="noopener">Wire, lugs, MC4, connectors, shunt</a></td><td data-label="Spec">set</td><td data-label="Est. cost">$70</td></tr>
-        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=battery+monitor+voltmeter+12v" target="_blank" rel="noopener">Battery monitor / voltmeter</a></td><td data-label="Spec">1</td><td data-label="Est. cost">$30</td></tr>
-        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=solar+panel+mounting+bracket+enclosure" target="_blank" rel="noopener">Mounting / enclosure / misc</a></td><td data-label="Spec">set</td><td data-label="Est. cost">$40</td></tr>
+          <li><a class="buy" href="https://www.amazon.com/s?k=power+bank+phone+portable+charger" target="_blank" rel="noopener">Power banks for phones (one per adult)</a></li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=frs+gmrs+two+way+radios" target="_blank" rel="noopener">FRS/GMRS radios — one per family member</a></li>
+        </ul>
+      </div>
+      <div class="card"><div class="tag">Money &amp; medicine</div>
+        <ul>
+          <li>$500–700 in small bills</li>
+          <li><a class="buy" href="https://www.amazon.com/s?k=first+aid+kit+trauma+tourniquet+gauze" target="_blank" rel="noopener">First aid kit + trauma basics (tourniquet, gauze)</a></li>
           <li>Prescriptions for all 4: legal 30–90 day stockpile</li>
           <li><a class="buy" href="https://www.amazon.com/s?k=childrens+fever+reducer+oral+rehydration+salts" target="_blank" rel="noopener">Kids' meds: fever reducer, ORS, kid-sized dosing</a></li>
           <li>Copies of IDs, insurance, contacts (paper)</li>
@@ -400,7 +425,16 @@
     <table>
       <thead><tr><th>Component</th><th>Spec</th><th>Est. cost</th></tr></thead>
       <tbody>
+        <tr class="hl"><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=100+watt+solar+panel+monocrystalline" target="_blank" rel="noopener">Solar panel</a></td><td data-label="Spec">1 × 100W mono</td><td data-label="Est. cost">$90</td></tr>
+        <tr class="hl"><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=lifepo4+battery+12v+100ah" target="_blank" rel="noopener">LiFePO₄ battery (BMS built-in)</a></td><td data-label="Spec">1 × 100Ah 12V</td><td data-label="Est. cost">$280</td></tr>
+        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=mppt+solar+charge+controller+30a" target="_blank" rel="noopener">MPPT charge controller</a></td><td data-label="Spec">30A</td><td data-label="Est. cost">$40</td></tr>
+        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=pure+sine+wave+inverter+12v+1000w" target="_blank" rel="noopener">Pure-sine inverter</a></td><td data-label="Spec">500–1000W</td><td data-label="Est. cost">$100</td></tr>
+        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=12v+fuse+block+breaker+anl+fuse" target="_blank" rel="noopener">Fuse box + breakers / ANL fuses</a></td><td data-label="Spec">set</td><td data-label="Est. cost">$45</td></tr>
+        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=12v+battery+cable+lugs+mc4+connectors" target="_blank" rel="noopener">Wire, lugs, MC4, connectors, shunt</a></td><td data-label="Spec">set</td><td data-label="Est. cost">$70</td></tr>
+        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=battery+monitor+voltmeter+12v" target="_blank" rel="noopener">Battery monitor / voltmeter</a></td><td data-label="Spec">1</td><td data-label="Est. cost">$30</td></tr>
+        <tr><td data-label="Component"><a class="buy" href="https://www.amazon.com/s?k=solar+panel+mounting+bracket+enclosure" target="_blank" rel="noopener">Mounting / enclosure / misc</a></td><td data-label="Spec">set</td><td data-label="Est. cost">$40</td></tr>
       </tbody>
+      <tfoot><tr><td data-label="Component">Total</td><td data-label="Spec">independent 100W / 100Ah system</td><td data-label="Est. cost">$695</td></tr></tfoot>
     </table>
     <div class="grid g2">
       <div class="card"><div class="tag">What it runs</div>
@@ -484,11 +518,13 @@
     <div class="quote" style="margin-top:auto">The goal isn't a bunker. It's a boring Tuesday you barely notice.</div>
   </section>
 
+</div>
 <div style="position:fixed;top:0;left:0;right:0;z-index:50;background:linear-gradient(90deg,#0e1c28,#121a23);border-bottom:1px solid #1f4a68;padding:8px 14px;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#9fc4de;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap">
   <span style="color:#4aa8e2;font-weight:700">🌊 ADDENDUM A</span>
   <span>You're walking distance from the Housatonic — the flood / bug-out layer is a separate sheet.</span>
   <a href="bugout.html" style="color:#e8eef5;background:#1f4a68;border:1px solid #2d6b95;border-radius:8px;padding:4px 12px;text-decoration:none;font-weight:700">Open Bug-Out &amp; Flood plan →</a>
 </div>
+
 
 <div class="hud">
   <div>Volt Labs · Preparedness Brief · <span id="counter">1 / 11</span></div>
@@ -509,6 +545,7 @@
   let i=0, printing=false;
   slides.forEach((s,n)=>{const d=document.createElement('div');d.className='pip'+(n===0?' on':'');d.onclick=()=>go(n);pips.appendChild(d)});
   const pipEls=[...pips.children];
+  function go(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i));pipEls.forEach((p,k)=>p.classList.toggle('on',k===i));counter.textContent=(i+1)+' / '+slides.length;progress.style.width=((i+1)/slides.length*100)+'%';document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===slides.length-1;if(isMobile()){deckEl.scrollTo({left:i*deckEl.clientWidth,behavior:'smooth'});}}
   document.getElementById('next').onclick=()=>go(i+1);
   document.getElementById('prev').onclick=()=>go(i-1);
   addEventListener('keydown',e=>{
@@ -520,6 +557,10 @@
   });
   let sx=null;
   addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(!isMobile()&&Math.abs(dx)>50)go(i+(dx<0?1:-1));sx=null},{passive:true});
+  // keep state in sync when the user swipes the horizontal mobile feed
+  let scrollT=null;
+  deckEl.addEventListener('scroll',()=>{if(!isMobile())return;clearTimeout(scrollT);scrollT=setTimeout(()=>{const n=Math.round(deckEl.scrollLeft/deckEl.clientWidth);if(n!==i){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i));pipEls.forEach((p,k)=>p.classList.toggle('on',k===i));counter.textContent=(i+1)+' / '+slides.length;progress.style.width=((i+1)/slides.length*100)+'%';document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===slides.length-1;}},90)},{passive:true});
   go(0);
 </script>
 </body>
